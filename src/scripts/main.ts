@@ -35,8 +35,6 @@ class Main {
             u_time: { type: "f", value: 1.0 }
         };
         this.init()
-        console.log(fragment, 'fragement')
-        console.log(vertex, 'vertex')
     } 
 
     init() {
@@ -79,18 +77,12 @@ class Main {
             vertexShader: vertex,
             fragmentShader: fragment
         });
-        // const material = new THREE.MeshBasicMaterial({
-        //     color:0xCC24EA
-        // });
-        const cube = new THREE.Mesh(geometry, material);
-        this.scene.add(cube);
+
+        const sphere = new THREE.Mesh(geometry, material);
+        this.scene.add(sphere);
         const axesHelper = new THREE.AxesHelper(5);
         this.scene.add(axesHelper);
-        this.camera.position.z = 25;
-        // this.camera.position.y = 15;
-        // this.camera.position.x = 5;
-        // this.camera.position. = 45;
-        console.log(this.scene, 'scene')
+        this.camera.position.set(10, 5, 10);
     }
 
     resize() {
@@ -107,14 +99,14 @@ class Main {
     renderLoop() {
         this.uniforms.u_time.value += 0.05;
         this.renderer.render(this.scene, this.camera);
-
+        this.controls.update()
         window.requestAnimationFrame(this.renderLoop.bind(this))
     }
 
     copyright() {
         console.log(
-            "%c three starter",
-            "color:white;padding:10px;background:#a29bfe;font-size:16px;"
+            "%c SUCEPUTE ",
+            "color:white;padding:10px;font-weight:700;font-style:italic;background:red;font-size:16px;"
         );
     }
 }
